@@ -11,7 +11,6 @@ public class YandexLoginPage extends AbstractPage {
     private static final String LOGIN_LOCATOR = "passport-Input-Controller";
     private static final By PASSWORD_LOCATOR = By.name("passwd");
     private static final String SUBMIT = "passport-Button-Text";
-    private UserAccount account;
 
     public YandexLoginPage(WebDriver driver){
         super(driver);
@@ -43,5 +42,11 @@ public class YandexLoginPage extends AbstractPage {
         new Actions(driver).moveToElement(submitButton).build().perform();
         new Actions(driver).click(submitButton).build().perform();
 
+    }
+
+    public void loginUser(UserAccount account){
+        setLogin(account.getLogin());
+        setPassword(account.getPassword());
+        logIn();
     }
 }

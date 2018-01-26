@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ta.module8frameworks.bobjects.NewMail;
 import ta.module8frameworks.bobjects.UserAccount;
+import ta.module8frameworks.pages.NewMailPage;
 import ta.module8frameworks.pages.YandexGeneralPage;
 import ta.module8frameworks.pages.YandexLoginPage;
 import ta.module8frameworks.utils.ValidationUtil;
@@ -21,6 +22,8 @@ public class YandexMailNew {
     private static final String DRIVER_LOCATION = "d:\\_WebDriver\\chromedriver.exe" ;
     private WebDriver driver;
     private UserAccount account;
+    private String login = "vadim.kuryan.vka";
+    private String password = "Vka_6463296";
 
     @BeforeClass(description = "Start Browser")
     public void getUrl(){
@@ -42,24 +45,25 @@ public class YandexMailNew {
     public void CreateMail() {
 
         account = new UserAccount();
+        account.setLogin(login);
+        account.setPassword(password);
+
         YandexLoginPage loginPage = new YandexLoginPage(driver);
         ValidationUtil valUtil = new ValidationUtil();
 
-        loginPage.setLogin(account.getLogin());
-        loginPage.setPassword(account.getPassword());
-        loginPage.logIn();
+        loginPage.loginUser(account);
 
         YandexGeneralPage generPage = new YandexGeneralPage(driver);
         generPage.createMail();
 
-        NewMail newMail = new NewMail(driver);
+        NewMailPage newMail = new NewMailPage(driver);
         newMail.setMailAdress();
         newMail.setMailAdress2();
         newMail.setMailTheme();
         newMail.saveAsDraft();
 
         valUtil.logAssert(generPage.isSavedMailDisp());
-        valUtil.logAssert(generPage.isSavedMailDisp());
+        valUtil.logAssert(generPage.isContentMails());
 
         generPage.sendMail();
 

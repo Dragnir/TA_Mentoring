@@ -2,8 +2,8 @@ package ta.module8frameworks.bobjects;
 
 public class UserAccount {
 
-	private String login = "vadim.kuryan.vka";
-	private String password = "Vka_6463296";
+	private String login;
+	private String password;
 
 	public String getLogin() {
 		return login;
