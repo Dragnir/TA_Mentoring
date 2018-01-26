@@ -63,12 +63,12 @@ public class YandexMailNew {
         newMail.saveAsDraft();
 
         valUtil.logAssert(generPage.isSavedMailDisp());
-        valUtil.logAssert(generPage.isContentMails());
+        valUtil.assertContent(generPage.isContentMails());
 
         generPage.sendMail();
 
-        valUtil.logAssert(generPage.isSentMail());
-        valUtil.logAssert(generPage.checkSendMail());
+        valUtil.assertSend(generPage.isSentMail());
+        valUtil.assertDraft(generPage.checkSendMail());
 
         }
 
