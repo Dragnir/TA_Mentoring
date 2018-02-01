@@ -5,7 +5,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ta.module9patterns.bobjects.UserAccount;
+import ta.module9patterns.core.EnumDrivers;
 import ta.module9patterns.core.Singleton;
+import ta.module9patterns.core.WebDriverFactory;
 import ta.module9patterns.pages.NewMailPage;
 import ta.module9patterns.pages.YandexGeneralPage;
 import ta.module9patterns.pages.YandexLoginPage;
@@ -24,7 +26,7 @@ public class YandexMailNew {
     @BeforeClass(description = "Start Browser")
     public void getUrl(){
 
-        driver = Singleton.getCromeDriverIns();
+        driver = WebDriverFactory.getDriverIns(EnumDrivers.CHROME);
 
         // Go to yandex mail
         driver.get(URL_YANDEX);
