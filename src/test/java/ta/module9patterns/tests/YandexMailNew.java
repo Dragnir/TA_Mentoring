@@ -57,13 +57,13 @@ public class YandexMailNew {
         newMail.setMailTheme();
         newMail.saveAsDraft();
 
-        valUtil.logAssert(generPage.isSavedMailDisp());
-        valUtil.assertContent(generPage.isContentMails());
+        valUtil.logAssert(generPage.isSavedMailDisp(), "Mail was saved");
+        valUtil.logAssert(generPage.isContentMails(), "Content present");
 
         generPage.sendMail();
 
-        valUtil.assertSend(generPage.isSentMail());
-        valUtil.assertDraft(generPage.checkSendMail());
+        valUtil.logAssert(generPage.isSentMail(), "Mail was send");
+        valUtil.logAssert(generPage.checkSendMail(), "Draft folder is empty");
 
         }
 
