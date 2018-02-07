@@ -2,24 +2,20 @@ package ta.module10BDD.core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-
-import java.io.File;
-import java.io.IOException;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeCreator extends DriverCreator {
+
+	private static final String DRIVER_LOCATION = "d:\\_WebDriver\\chromedriver.exe" ;
 
 	@Override
 	public WebDriver createDriver() {
 
-		ChromeDriverService service = new ChromeDriverService.Builder().usingDriverExecutable(
-				new File("d:\\_WebDriver\\chromedriver.exe")).build();
-		try {
-			service.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		driver = new ChromeDriver(service);
+		System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("start-maximized");
+		driver = new ChromeDriver(options);
+
 		return driver;
 	}
 }

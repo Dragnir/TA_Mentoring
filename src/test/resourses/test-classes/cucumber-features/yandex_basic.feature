@@ -12,4 +12,3 @@ Scenario: New mail creation
 Given user navigates to Yandex mail
 When  enters user credentials and submits login form
 Then  yandex mail home page is displayed
-

@@ -11,7 +11,8 @@ import ta.module10BDD.core.WebDriverFactory;
 import java.util.concurrent.TimeUnit;
 
 @CucumberOptions(strict = true, plugin = { "json:target/cucumber-report.json",
-		"html:target/cucumber-report" }, tags = "@newMail", features = "src/test/resources/test-classes/cucumber_features/yandex_basic.feature")
+		"html:target/cucumber-report" }, tags = "@newMail", features = "src/test/resourses/test-classes/cucumber_features/yandex_basic.feature",
+		glue = { "ta.module10BDD.steps" })
 
 public class YandexCucumberTestNGTest extends AbstractTestNGCucumberTests {
 
