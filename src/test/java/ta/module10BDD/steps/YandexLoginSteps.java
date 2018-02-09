@@ -7,7 +7,10 @@ import org.openqa.selenium.WebDriver;
 import ta.module10BDD.bobjects.UserAccount;
 import ta.module10BDD.core.EnumDrivers;
 import ta.module10BDD.core.WebDriverFactory;
+import ta.module10BDD.pages.NewMailPage;
+import ta.module10BDD.pages.YandexGeneralPage;
 import ta.module10BDD.pages.YandexLoginPage;
+import ta.module10BDD.utils.ValidationUtil;
 
 public class YandexLoginSteps {
 
@@ -29,13 +32,52 @@ public class YandexLoginSteps {
 
 		YandexLoginPage loginPage = new YandexLoginPage(driver);
 		loginPage.loginUser(account);
-
 	}
 
 	@Then("^yandex mail home page is displayed$")
 	public void verify_login_is_completed() {
-
 		System.out.println("Login was completed correctly.");
+	}
 
+	@Given("^user create new mail$")
+	public void create_new_mail() {
+		YandexGeneralPage generPage = new YandexGeneralPage(driver);
+		generPage.createMail();
+	}
+
+	@When("^user enter mail addres and theme and save mail as draft$")
+	public void enter_address_save() {
+		NewMailPage newMail = new NewMailPage(driver);
+		newMail.setMailAdress();
+		newMail.setMailAdress2();
+		newMail.setMailTheme();
+		newMail.saveAsDraft();
+	}
+
+	@Then("^new mail available in draft folder$")
+	public void verify_new_mail() {
+		System.out.println("New mail is available");
+	}
+
+	@Given("^user send new mail$")
+	public void send_new_mail() {
+		ValidationUtil valUtil = new ValidationUtil();
+		YandexGeneralPage generPage = new YandexGeneralPage(driver);
+		valUtil.logTrue(generPage.isSavedMailDisp(), "Mail was saved");
+		valUtil.logTrue(generPage.isContentMails(), "Content present");
+	}
+
+	@When("^user go to draft folder and send mail$")
+	public void go_send_mail() {
+		YandexGeneralPage generPage = new YandexGeneralPage(driver);
+		generPage.sendMail();
+	}
+
+	@Then("^new mail is removed from draft folder$")
+	public void verify_sent_mail() {
+		ValidationUtil valUtil = new ValidationUtil();
+		YandexGeneralPage generPage = new YandexGeneralPage(driver);
+		valUtil.logTrue(generPage.isSentMail(), "Mail was send");
+		valUtil.logTrue(generPage.checkSendMail(), "Draft folder is empty");
 	}
 }
