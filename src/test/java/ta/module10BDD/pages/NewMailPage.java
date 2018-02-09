@@ -36,12 +36,12 @@ public class NewMailPage extends AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void setMailAdress() {
+    public void setMailAdress(String address) {
 
         // Set mail address
         WebElement mailAddress = driver.findElement(SEND_TO_FIELD_LOCATOR);
         hightlightElement(mailAddress);
-        mailAddress.sendKeys(newMail.getNewMail());
+        mailAddress.sendKeys(address);
     }
 
     public void setMailAdress2() {
@@ -82,6 +82,7 @@ public class NewMailPage extends AbstractPage {
         draft.click();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         saveAndGoButton.click();
+        driver.navigate().refresh();
 
     }
 }

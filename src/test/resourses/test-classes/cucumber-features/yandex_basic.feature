@@ -7,6 +7,9 @@ Feature: Yandex basic test
 #Background:
 #Given user navigates to github home page
 
+Background:
+Given New scenario started
+
 @newMail
 Scenario: Log in to mail
 Given user navigates to Yandex mail
@@ -14,10 +17,15 @@ When  enters user credentials and submits login form
 Then  yandex mail home page is displayed
 
 @newMail
-Scenario: New mail creation
+Scenario Outline: New mail creation
 Given user create new mail
-When  user enter mail addres and theme and save mail as draft
+When  user enter mail "<address>" and theme and save mail as draft
 Then  new mail available in draft folder
+
+Examples:
+  | address                |
+  | dragnir@tut.by         |
+  | vadim.kuryan@gmail.com |
 
 @newMail
 Scenario: Send mail

@@ -51,7 +51,7 @@ public class YandexMailNew {
         generPage.createMail();
 
         NewMailPage newMail = new NewMailPage(driver);
-        newMail.setMailAdress();
+        //newMail.setMailAdress(a);
         newMail.setMailAdress2();
         newMail.setMailTheme();
         newMail.saveAsDraft();

@@ -67,7 +67,6 @@ public class YandexGeneralPage extends AbstractPage {
     public boolean isSentMail() {
 
         // Check content of the saved mail present in Draft folder
-        //WebElement sentFolder = driver.findElement(By.xpath(SENT_MAIL));
         sentMail.click();
         WebElement sentMail = driver.findElement(By.xpath(DRAFT_FOLDER));
 
@@ -77,7 +76,6 @@ public class YandexGeneralPage extends AbstractPage {
     public boolean checkSendMail(){
 
         // Go to draft folder and check that mail is Not available
-        //WebElement draftMails = driver.findElement(draft);
         draft.click();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.navigate().refresh();
